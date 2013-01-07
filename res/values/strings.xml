@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Anagram Shuffle</string>
-    <string name="title_activity_main">Anagram List</string>
+    <string name="title_activity_main">Anagram Shuffle</string>
     <string name="addButton">Add</string>
     <string name="newAnagramInput">New anagram</string>
 </resources>
