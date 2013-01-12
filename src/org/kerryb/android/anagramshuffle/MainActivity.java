@@ -1,18 +1,16 @@
 package org.kerryb.android.anagramshuffle;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ListActivity {
 
 	private Database db;
 	private SimpleCursorAdapter anagramListViewAdapter;
-	private ListView anagramListView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +23,7 @@ public class MainActivity extends Activity {
 		anagramListViewAdapter = new SimpleCursorAdapter(this,
 				android.R.layout.simple_list_item_1, db.allAnagramsCursor(),
 				fromColumns, toViews, 0);
-		anagramListView = (ListView) findViewById(R.id.anagramListView);
-		anagramListView.setAdapter(anagramListViewAdapter);
+		setListAdapter(anagramListViewAdapter);
 	}
 
 	@Override
