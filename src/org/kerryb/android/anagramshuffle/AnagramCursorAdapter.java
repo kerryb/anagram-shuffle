@@ -21,5 +21,7 @@ public class AnagramCursorAdapter extends SimpleCursorAdapter {
 
 		View button = view.findViewById(R.id.deleteButton);
 		button.setOnClickListener(new DeleteButtonListener(context, id));
+		View textView = view.findViewById(R.id.anagram_text);
+		textView.setOnClickListener(new OpenAnagramListener(context, id));
 	}
 }
