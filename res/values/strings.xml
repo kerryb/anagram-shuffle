@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Anagram Shuffle</string>
     <string name="title_activity_main">Anagram Shuffle</string>
-    <string name="addButton">Add</string>
-    <string name="newAnagramInput">New anagram</string>
+    <string name="add_button">Add</string>
+    <string name="new_anagram_input">New anagram</string>
+    <string name="delete">Delete</string>
 </resources>

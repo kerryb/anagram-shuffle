@@ -5,7 +5,7 @@
     tools:context=".MainActivity" >
 
     <LinearLayout
-        android:id="@+id/anagramsLinearLayout"
+        android:id="@+id/newAnagramLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="@string/newAnagramInput"
+            android:hint="@string/new_anagram_input"
             android:inputType="textCapCharacters" />
 
         <Button
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="addAnagram"
-            android:text="@string/addButton" />
+            android:text="@string/add_button" />
     </LinearLayout>
 
     <ListView
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/anagramsLinearLayout" >
+        android:layout_below="@+id/newAnagramLayout" >
     </ListView>
 
 </RelativeLayout>
