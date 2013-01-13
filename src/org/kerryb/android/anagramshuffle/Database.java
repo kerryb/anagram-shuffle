@@ -1,5 +1,7 @@
 package org.kerryb.android.anagramshuffle;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -48,5 +50,10 @@ public class Database extends SQLiteOpenHelper {
 
 		return database.query(AnagramsTable.TABLE_NAME, projection, null, null,
 				null, null, sortOrder);
+	}
+
+	public void deleteAnagram(String id) {
+		String[] whereArgs = {id};
+		database.delete(AnagramsTable.TABLE_NAME, String.format("%s = ?", AnagramsTable._ID), whereArgs);
 	}
 }
