@@ -19,7 +19,7 @@ final class DeleteButtonListener implements OnClickListener {
 		builder.setMessage("Are you sure you want to delete this anagram?")
 				.setPositiveButton(
 						"Delete",
-						((MainActivity) context).new ConfirmDeleteListener(
+						new ConfirmDeleteListener(context,
 								anagramId)).setNegativeButton("Cancel", null);
 		;
 		builder.show();

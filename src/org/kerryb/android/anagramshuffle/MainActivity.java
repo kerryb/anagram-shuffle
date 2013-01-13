@@ -1,8 +1,6 @@
 package org.kerryb.android.anagramshuffle;
 
 import android.app.ListActivity;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -34,19 +32,9 @@ public class MainActivity extends ListActivity {
 		editText.setText("");
 	}
 
-	public class ConfirmDeleteListener implements OnClickListener {
-		private String id;
-
-		public ConfirmDeleteListener(String id) {
-			super();
-			this.id = id;
-		}
-
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			db.deleteAnagram(id);
-			anagramListViewAdapter.swapCursor(db.allAnagramsCursor());
-			anagramListViewAdapter.notifyDataSetChanged();
-		}
+	public void deleteAnagram(String id) {
+		db.deleteAnagram(id);
+		anagramListViewAdapter.swapCursor(db.allAnagramsCursor());
+		anagramListViewAdapter.notifyDataSetChanged();
 	}
 }
