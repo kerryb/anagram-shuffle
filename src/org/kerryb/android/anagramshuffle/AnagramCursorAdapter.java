@@ -23,20 +23,28 @@ public class AnagramCursorAdapter extends SimpleCursorAdapter {
 				.getColumnIndex(AnagramsTable._ID));
 
 		ImageButton button = (ImageButton) view.findViewById(R.id.deleteButton);
-		button.setOnClickListener(new OnClickListener() {
-			public void onClick(View arg0) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(context);
-				builder.setMessage(
-						"Are you sure you want to delete this anagram?")
-						.setPositiveButton(
-								"Delete",
-								((MainActivity) context).new ConfirmDeleteListener(
-										id))
-						.setNegativeButton("Cancel", null);
-				;
-				builder.show();
+		button.setOnClickListener(new DeleteButtonListener(id, context));
+	}
 
-			}
-		});
+	private final class DeleteButtonListener implements OnClickListener {
+		private final String id;
+		private final Context context;
+
+		private DeleteButtonListener(String id, Context context) {
+			this.id = id;
+			this.context = context;
+		}
+
+		public void onClick(View arg0) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(context);
+			builder.setMessage("Are you sure you want to delete this anagram?")
+					.setPositiveButton(
+							"Delete",
+							((MainActivity) context).new ConfirmDeleteListener(
+									id)).setNegativeButton("Cancel", null);
+			;
+			builder.show();
+
+		}
 	}
 }
