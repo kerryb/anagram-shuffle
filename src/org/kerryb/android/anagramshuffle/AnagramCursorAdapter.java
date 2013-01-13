@@ -7,7 +7,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageButton;
 import android.widget.SimpleCursorAdapter;
 
 public class AnagramCursorAdapter extends SimpleCursorAdapter {
@@ -22,7 +21,7 @@ public class AnagramCursorAdapter extends SimpleCursorAdapter {
 		final String id = cursor.getString(cursor
 				.getColumnIndex(AnagramsTable._ID));
 
-		ImageButton button = (ImageButton) view.findViewById(R.id.deleteButton);
+		View button = view.findViewById(R.id.deleteButton);
 		button.setOnClickListener(new DeleteButtonListener(id, context));
 	}
 
