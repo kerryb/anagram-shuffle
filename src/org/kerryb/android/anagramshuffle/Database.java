@@ -42,16 +42,25 @@ public class Database extends SQLiteOpenHelper {
 
 	public Cursor allAnagramsCursor() {
 		String[] projection = { AnagramsTable._ID, AnagramsTable.COLUMN_WORD };
-
-		// How you want the results sorted in the resulting Cursor
 		String sortOrder = AnagramsTable._ID;
-
 		return database.query(AnagramsTable.TABLE_NAME, projection, null, null,
 				null, null, sortOrder);
 	}
 
+	public Anagram lookupAnagram(String id) {
+		String[] projection = { AnagramsTable._ID, AnagramsTable.COLUMN_WORD };
+		String selection = "_id = ?";
+		String[] args = { id };
+		Cursor query = database.query(AnagramsTable.TABLE_NAME, projection,
+				selection, args, null, null, null, "1");
+		query.moveToFirst();
+		return new Anagram(query.getString(query
+				.getColumnIndex(AnagramsTable.COLUMN_WORD)));
+	}
+
 	public void deleteAnagram(String id) {
-		String[] whereArgs = {id};
-		database.delete(AnagramsTable.TABLE_NAME, String.format("%s = ?", AnagramsTable._ID), whereArgs);
+		String[] whereArgs = { id };
+		database.delete(AnagramsTable.TABLE_NAME,
+				String.format("%s = ?", AnagramsTable._ID), whereArgs);
 	}
 }
