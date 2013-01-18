@@ -1,7 +1,8 @@
 package org.kerryb.android.anagramshuffle;
 
-public class Anagram {
+import java.util.Arrays;
 
+public class Anagram {
 	private String word;
 
 	public Anagram(String word) {
@@ -10,5 +11,9 @@ public class Anagram {
 	
 	public String word() {
 		return word;
+	}
+	
+	public String[] letters() {
+		return Arrays.copyOfRange(word.split(""), 1, word.length() + 1);
 	}
 }
