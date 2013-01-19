@@ -2,6 +2,8 @@ package org.kerryb.android.anagramshuffle;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
@@ -19,7 +21,7 @@ public class AnagramActivity extends Activity {
 		RelativeLayout viewLayout = (RelativeLayout) findViewById(R.id.anagramLayout);
 		String[] letters = anagram.letters();
 		for (int i = 0; i < letters.length; i++) {
-			TextView textView = new TextView(this);
+			final TextView textView = new TextView(this);
 			textView.setText(letters[i]);
 			textView.setTextSize(36);
 			viewLayout.addView(textView);
@@ -29,6 +31,7 @@ public class AnagramActivity extends Activity {
 			letterLayout.topMargin = (i / 4) * 100;
 			letterLayout.alignWithParent = true;
 			textView.setLayoutParams(letterLayout);
+			textView.setOnTouchListener(new LetterTouchListener(textView));
 		}
 	}
 }
