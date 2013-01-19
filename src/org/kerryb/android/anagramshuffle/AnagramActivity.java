@@ -8,28 +8,34 @@ import android.widget.TextView;
 
 public class AnagramActivity extends Activity {
 	private Database db;
+	private String anagramId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_anagram);
-		String anagramId = getIntent().getExtras().getString("anagramId");
 		db = new Database(this);
-		Anagram anagram = db.lookupAnagram(anagramId);
+		anagramId = getIntent().getExtras().getString("anagramId");
+		addLetters();
+	}
+
+	private void addLetters() {
 		RelativeLayout viewLayout = (RelativeLayout) findViewById(R.id.anagramLayout);
-		String[] letters = anagram.letters();
-		for (int i = 0; i < letters.length; i++) {
-			final TextView textView = new TextView(this);
-			textView.setText(letters[i]);
-			textView.setTextSize(36);
-			viewLayout.addView(textView);
-			LayoutParams letterLayout = (LayoutParams) textView
-					.getLayoutParams();
-			letterLayout.leftMargin = (i % 4) * 100;
-			letterLayout.topMargin = (i / 4) * 100;
-			letterLayout.alignWithParent = true;
-			textView.setLayoutParams(letterLayout);
-			textView.setOnTouchListener(new LetterTouchListener(textView));
+		for (Letter letter : db.anagramLetters(anagramId)) {
+			addLetterView(viewLayout, letter);
 		}
+	}
+
+	private void addLetterView(RelativeLayout viewLayout, Letter letter) {
+		final TextView textView = new TextView(this);
+		textView.setText(letter.letter());
+		textView.setTextSize(36);
+		viewLayout.addView(textView);
+		LayoutParams letterLayout = (LayoutParams) textView.getLayoutParams();
+		letterLayout.leftMargin = letter.x();
+		letterLayout.topMargin = letter.y();
+		letterLayout.alignWithParent = true;
+		textView.setLayoutParams(letterLayout);
+		textView.setOnTouchListener(new LetterTouchListener(textView));
 	}
 }
