@@ -55,7 +55,8 @@ public class Database extends SQLiteOpenHelper {
 	public void addAnagram(String word) {
 		ContentValues anagramValues = new ContentValues();
 		anagramValues.put(Database.AnagramsTable.COLUMN_WORD, word);
-		long anagramId = database.insert(Database.AnagramsTable.TABLE_NAME, null, anagramValues);
+		long anagramId = database.insert(Database.AnagramsTable.TABLE_NAME,
+				null, anagramValues);
 		for (int i = 0; i < word.length(); i++) {
 			String letter = Character.toString(word.charAt(i));
 			insertLetter(anagramId, letter, (i % 4) * 100, (i / 4) * 100);
@@ -104,15 +105,21 @@ public class Database extends SQLiteOpenHelper {
 		String[] whereArgs = { id };
 		database.delete(AnagramsTable.TABLE_NAME,
 				String.format("%s = ?", AnagramsTable._ID), whereArgs);
+		database.delete(LettersTable.TABLE_NAME,
+				String.format("%s = ?", LettersTable.COLUMN_ANAGRAM_ID),
+				whereArgs);
 	}
 
 	public void saveLetters(List<Letter> letters) {
 		for (Letter letter : letters) {
 			ContentValues letterValues = new ContentValues();
-			letterValues.put(Database.LettersTable.COLUMN_X_POSITION, letter.x());
-			letterValues.put(Database.LettersTable.COLUMN_Y_POSITION, letter.y());
+			letterValues.put(Database.LettersTable.COLUMN_X_POSITION,
+					letter.x());
+			letterValues.put(Database.LettersTable.COLUMN_Y_POSITION,
+					letter.y());
 			String[] selection = { Integer.toString(letter.id()) };
-			database.update(Database.LettersTable.TABLE_NAME, letterValues, "_id = ?", selection);
+			database.update(Database.LettersTable.TABLE_NAME, letterValues,
+					"_id = ?", selection);
 		}
 	}
 }
