@@ -1,5 +1,8 @@
 package org.kerryb.android.anagramshuffle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
@@ -9,6 +12,7 @@ import android.widget.TextView;
 public class AnagramActivity extends Activity {
 	private Database db;
 	private String anagramId;
+	private List<Letter> letters;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,12 +20,20 @@ public class AnagramActivity extends Activity {
 		setContentView(R.layout.activity_anagram);
 		db = new Database(this);
 		anagramId = getIntent().getExtras().getString("anagramId");
+		letters = new ArrayList<Letter>();
 		addLetters();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		db.saveLetters(letters);
 	}
 
 	private void addLetters() {
 		RelativeLayout viewLayout = (RelativeLayout) findViewById(R.id.anagramLayout);
 		for (Letter letter : db.anagramLetters(anagramId)) {
+			letters.add(letter);
 			addLetterView(viewLayout, letter);
 		}
 	}
@@ -36,6 +48,6 @@ public class AnagramActivity extends Activity {
 		letterLayout.topMargin = letter.y();
 		letterLayout.alignWithParent = true;
 		textView.setLayoutParams(letterLayout);
-		textView.setOnTouchListener(new LetterTouchListener(textView));
+		textView.setOnTouchListener(new LetterTouchListener(letter, textView));
 	}
 }

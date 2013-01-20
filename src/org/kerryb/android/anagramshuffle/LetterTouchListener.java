@@ -7,10 +7,12 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
 public class LetterTouchListener implements OnTouchListener {
+	private Letter letter;
 	private View letterView;
 
-	public LetterTouchListener(View letterView) {
+	public LetterTouchListener(Letter letter, View letterView) {
 		super();
+		this.letter = letter;
 		this.letterView = letterView;
 	}
 
@@ -19,10 +21,10 @@ public class LetterTouchListener implements OnTouchListener {
 		LayoutParams layoutParams = (RelativeLayout.LayoutParams) letterView
 				.getLayoutParams();
 		if (event.getActionMasked() == MotionEvent.ACTION_MOVE) {
-			int x_coord = (int) (view.getLeft() + event.getX());
-			int y_coord = (int) (view.getTop() + event.getY());
-			layoutParams.leftMargin = x_coord;
-			layoutParams.topMargin = y_coord;
+			letter.setX((int) (view.getLeft() + event.getX()));
+			letter.setY((int) (view.getTop() + event.getY()));
+			layoutParams.leftMargin = letter.x();
+			layoutParams.topMargin = letter.y();
 			letterView.setLayoutParams(layoutParams);
 		}
 		return true;

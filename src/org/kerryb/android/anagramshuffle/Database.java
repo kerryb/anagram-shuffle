@@ -105,4 +105,14 @@ public class Database extends SQLiteOpenHelper {
 		database.delete(AnagramsTable.TABLE_NAME,
 				String.format("%s = ?", AnagramsTable._ID), whereArgs);
 	}
+
+	public void saveLetters(List<Letter> letters) {
+		for (Letter letter : letters) {
+			ContentValues letterValues = new ContentValues();
+			letterValues.put(Database.LettersTable.COLUMN_X_POSITION, letter.x());
+			letterValues.put(Database.LettersTable.COLUMN_Y_POSITION, letter.y());
+			String[] selection = { Integer.toString(letter.id()) };
+			database.update(Database.LettersTable.TABLE_NAME, letterValues, "_id = ?", selection);
+		}
+	}
 }
