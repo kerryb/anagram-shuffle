@@ -7,7 +7,7 @@ The app is pretty simple &ndash; just enter the anagrams you're trying to solve,
 
 ![Main screen](https://raw.github.com/kerryb/anagram-shuffle/master/assets/screenshot-main.png)&nbsp;![Anagram screen](https://raw.github.com/kerryb/anagram-shuffle/master/assets/screenshot-anagram.png)
 
-The current version is really little more than a spike (it has no tests, isn't particularly well-organised and probably doesn't use the Android API in the best way), but it seems to work. You can download [AnagramShuffle-1.0.apk](http://dl.dropbox.com/u/17259947/AnagramShuffle-1.0.apk) if you want to give it a try. Maybe when I've finished reading [Responsible Design for Android](https://leanpub.com/ResponsibleDesignAndroid-Part1) I'll rewrite it properly and upload it to Google Play, but don't hold your breath.
+The current version is really little more than a spike (it has no tests, isn't particularly well-organised and probably doesn't use the Android API in the best way), but it seems to work. You can download [AnagramShuffle-1.0.apk](https://www.dropbox.com/s/496mluh2a4ddf3l/AnagramShuffle-1.0.apk?dl=0) if you want to give it a try. Maybe when I've finished reading [Responsible Design for Android](https://leanpub.com/ResponsibleDesignAndroid-Part1) I'll rewrite it properly and upload it to Google Play, but don't hold your breath.
 
 Licence
 -------
